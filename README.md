@@ -30,7 +30,7 @@ cd electron && npm install
 
 ### Footage
 
-<video src="assets/gui.mp4"></video>
+![gui](assets/gui.mov)
 ![heron](assets/heron1.jpg)
 ![sketch](assets/sketch.jpg)
 ![pcb](assets/pcb.jpg)
