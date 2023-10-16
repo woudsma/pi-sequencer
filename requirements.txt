@@ -1,0 +1,5 @@
+redis
+adafruit-circuitpython-mcp230xx
+# isobar
+isobar -e git+https://github.com/ideoforms/isobar.git@12b03500ea882f17c3521700f7f74b0e36e4b335
+json-tricks

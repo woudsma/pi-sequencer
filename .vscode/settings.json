@@ -1,0 +1,8 @@
+{
+  "python.formatting.provider": "autopep8",
+  "remote.SSH.enableX11Forwarding": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "python.analysis.typeCheckingMode": "off",
+}

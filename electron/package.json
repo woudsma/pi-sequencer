@@ -1,0 +1,50 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "npm-run-all build --parallel serve build:watch-frontend watch:electron",
+    "serve": "npx reload -d dist/frontend -n 0.0.0.0 -p 3000",
+    "start:electron": "electron dist/index.js $CHROMIUM_ARGS --inspect=0.0.0.0:9229",
+    "watch:electron": "nodemon --watch src --watch static --ignore src/frontend/ -e js,jsx,html,py,yml --delay 150ms --exec 'npm run build && npm run start:electron'",
+    "build": "npm-run-all --sequential build-** copy-static",
+    "build-backend": "esbuild --bundle --platform=node --target=node18 --packages=external --outdir=dist src/backend/index.js",
+    "build-frontend": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" --bundle --sourcemap --platform=browser --outdir=dist/frontend src/frontend/index.jsx",
+    "build2-frontend": "node esbuild.frontend.mjs",
+    "build:watch-backend": "npm run build-backend -- --watch",
+    "build:watch-frontend": "npm run build-frontend -- --watch",
+    "copy-static": "sudo cp -RT static dist/"
+  },
+  "keywords": [],
+  "author": "Tjerk Woudsma",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^25.2.0",
+    "esbuild": "^0.18.8",
+    "ip": "^1.1.8",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-fast-compare": "^3.2.2",
+    "react-icons": "^4.10.1",
+    "redis": "^4.6.7",
+    "styled-components": "^6.0.0-rc.6",
+    "tonal": "^5.0.0",
+    "yaml": "^2.3.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "babel-plugin-styled-components": "^2.1.4",
+    "esbuild-plugin-babel": "^0.2.3",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "reload": "^3.2.1"
+  }
+}

@@ -1,0 +1,22 @@
+device:
+  id: midiface4x4
+  name: Midiface 4x4
+  brand: Miditech
+  short: MF4x4
+  description: MIDI interface
+  midi:
+    config:
+      clock_in: "20:0"
+      outs:
+        - "20:2"
+    ports:
+      in:
+        - "20:0"
+        - "20:1"
+        - "20:2"
+        - "20:3"
+      out:
+        - "20:0"
+        - "20:1"
+        - "20:2"
+        - "20:3"

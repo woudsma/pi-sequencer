@@ -1,0 +1,74 @@
+device:
+  id: alphabase
+  name: Alpha Base
+  brand: JoMoX
+  short: AB
+  description: Drumcomputer
+  midi:
+    config:
+      accent:
+        min: 63
+        max: 127
+      velocity:
+        min: 0
+        max: 127
+      cc:
+        min: 0
+        max: 127
+    names:
+      BD: bass drum
+      SD: snare drum
+      LT: low tom
+      MT: mid tom
+      HT: high tom
+      CY: cymbal
+      OH: open hat
+      HH: high hat
+    notes:
+      - [BD, 36]
+      - [SD, 38]
+      - [LT, 41]
+      - [MT, 43]
+      - [HT, 45]
+      - [CY, 46, 47]
+      - [OH, 39, 42]
+      - [HH, 40, 44]
+      - [BD, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+      - [SD, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71]
+      - [LT, 72, 73, 78, 79]
+      - [MT, 74, 75, 80, 81]
+      - [HT, 76, 77, 82, 83]
+      - [CY, 84, 85, 86, 87, 88, 89]
+      - [OH, 90, 92, 94]
+      - [HH, 91, 93, 95]
+    cc:
+      - [BD Level, 8]
+      - [BD Tune, 9]
+      - [BD Decay, 10]
+      - [BD Pitch, 11]
+      - [BD Drive, 12]
+      - [BD Attack, 13]
+      - [SD Level, 16]
+      - [SD Tune, 17]
+      - [SD Decay, 18]
+      - [SD Noise, 19]
+      - [LT Level, 24]
+      - [LT Tune, 25]
+      - [LT Decay, 26]
+      - [LT Pitch, 27]
+      - [MT Level, 32]
+      - [MT Tune, 33]
+      - [MT Decay, 34]
+      - [MT Pitch, 35]
+      - [HT Level, 40]
+      - [HT Tune, 41]
+      - [HT Decay, 42]
+      - [HT Pitch, 43]
+      - [CY Level, 48]
+      - [CY Mix, 49]
+      - [CY Decay, 50]
+      - [CY Tune, 51]
+      - [HH Level, 56]
+      - [HH Mix, 57]
+      - [OH Decay, 58]
+      - [HH Decay, 59]
