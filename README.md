@@ -30,7 +30,7 @@ cd electron && npm install
 
 ### Footage
 
-https://github.com/woudsma/pi-sequencer/assets/6162978/bd151b78-a2f1-4b65-af08-33750962cbe6
+https://github.com/woudsma/pi-sequencer/assets/6162978/8dc7daa2-280c-4763-b87b-1b6a334eacd9
 
 ![heron](assets/heron1.jpg)
 ![sketch](assets/sketch.jpg)
