@@ -40,4 +40,5 @@ sudo echo "$START_SERVICE" > /etc/systemd/system/pi-sequencer-start.service
 systemctl daemon-reload
 systemctl enable pi-sequencer-start.service
 
+sudo apt-get update -y
 sudo apt-get install redis nodejs python3-pip -y
