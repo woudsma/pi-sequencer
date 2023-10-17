@@ -49,7 +49,20 @@ sudo reboot now
 ```
 
 ### Usage  
-The MIDI in/out ports will probably need to be set/updated to the correct ports for your setup. This can be done by updating/creating a `yml` MIDI chart in `electron/static/midi-charts/`.
+The MIDI in/out ports will probably need to be set/updated to the correct ports for your setup. This can be done by updating the `_interface.yml` MIDI chart in `electron/static/midi-charts/`. You just need to make sure to update the `clock_in`, `outs` and `ports.in` + `ports.out` to the available (and desired) ports. You can find the available input/output ports using:
+```sh
+sudo python3 -c "import isobar; print(isobar.io.midi.get_midi_input_names())"
+# > ['Midi Through:Midi Through Port-0 14:0', 'USB Midi 4i4o:USB Midi 4i4o MIDI 1 20:0', 'USB Midi 4i4o:USB Midi 4i4o MIDI 2 20:1', 'USB Midi 4i4o:USB Midi 4i4o MIDI 3 20:2', 'USB Midi 4i4o:USB Midi 4i4o MIDI 4 20:3', 'Midi Through:Midi Through Port-0 14:0', 'USB Midi 4i4o:USB Midi 4i4o MIDI 1 20:0', 'USB Midi 4i4o:USB Midi 4i4o MIDI 2 20:1', 'USB Midi 4i4o:USB Midi 4i4o MIDI 3 20:2', 'USB Midi 4i4o:USB Midi 4i4o MIDI 4 20:3']
+
+# filter for port numbers
+sudo python3 -c "import isobar; print(list(map(lambda x: x.split()[-1], isobar.io.midi.get_midi_input_names())))"
+# > ['14:0', '20:0', '20:1', '20:2', '20:3', '14:0', '20:0', '20:1', '20:2', '20:3']
+
+# to get the outputs, replace _input_names() with _output_names()
+```
+
+You can create `yml` files for any additional MIDI output devices. If `notes` and `names` have been configured, they will show up in the GUI when selecting the device under `MIDI MAP`.  
+
 This is my setup:
 
 > - Class compliant MIDI interface (Midiface 4x4) connected to Raspberry Pi with USB.  
@@ -66,6 +79,17 @@ Open a terminal window and SSH into the Raspberry Pi. The `pi-sequencer` app wil
 A development server is started after launch, it's accessible on `http:<raspberry-pi-ip-address>:3000` from other devices in your network. This is helpful for styling and UI debugging. The app state can be inspected with your browser Inspector or DevTools, by logging `window.storage`. This variable comes from the `storage` value that's stored in Redis.
 
 All app state is stored in Redis. You can use `redis-cli` to inspect any state variables as well. You can safely run [`FLUSHALL`](https://redis.io/commands/flushall/) to reset everything (destroy all tracks and state). Just restart the app to re-initialize the state.
+
+The launcher script is a workaround that makes sure that there's only one Electron process at a time. I ran into some issues when a Python (or Electron) process would exit unexpectedly and restart. If the startup service is not enabled, you can start the app by opening two SSH sessions, and running:
+```sh
+# window 1
+cd pi-sequencer-io
+sudo python3 main.py
+
+# window 2
+cd pi-sequencer-io/electron
+./start.sh
+```
 
 ### Media
 
