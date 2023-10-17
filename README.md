@@ -3,6 +3,16 @@
 #### Repository for the "Heron" multitrack Raspberry Pi hardware MIDI sequencer - 2023  
 
 > _Messy WIP weekend project!_
+---
+
+### Intro
+
+> - [Architecture](#architecture)
+> - [Installation](#installation)
+> - [Usage](#usage)
+> - [Development](#development)
+> - [Media](#media)
+> - [Features / todo's](#features--todos)
 
 Built with:
 - Raspberry Pi 4B
@@ -87,7 +97,7 @@ Here's how to print to `/dev/pts/0` from the different parts of the codebase:
 
 **Dev server**: A development server is started after app launch, it's accessible on `http://<raspberry-pi-ip-address-or-hostname>:3000` for other devices in your local network. This can be helpful for interactive styling and UI debugging. The app state can be inspected with your browser Inspector/Console or DevTools, by logging `window.storage`. This variable comes from the `storage` value that's stored in Redis. It's read from Redis and injected into the static HTML when Electron starts, so you can also view it by viewing the page source (or the [compiled HTML](https://github.com/woudsma/pi-sequencer/blob/master/electron/dist/frontend/index.html#L15)).
 
-**App state**: All app state is stored in Redis. You can use `redis-cli` to inspect any state variables as well. Use `redis-cli GET gpio_keys` to fetch all current GPIO keys, or `redis-cli GET switch_2` to fetch an individual GPIO value for example. You can run [`FLUSHALL`](https://redis.io/commands/flushall/) to reset everything (this ***destroys*** all tracks and state). Just restart the app to re-initialize the state.
+**App state**: All app state is stored in Redis. You can use `redis-cli` to inspect any state variables as well. Use `redis-cli GET gpio_keys` to fetch all current GPIO keys, or `redis-cli GET switch_2` to fetch (or use `SET` to update) an individual GPIO value for example. You can run [`FLUSHALL`](https://redis.io/commands/flushall/) to reset everything (this ***destroys*** all tracks and state). Just restart the app to re-initialize the state.
 
 **Launcher script**: The launcher script is a workaround that makes sure that there's only one Python (`main.py` and `midi.py`) + Electron process at a time. I ran into some issues when a Python (or Electron) process would exit unexpectedly and restart (resulting in multiple Electron or Python processes). There will be strange bugs when GPIO is set up by multiple processes!
 
@@ -136,7 +146,7 @@ https://github.com/woudsma/pi-sequencer/assets/6162978/8dc7daa2-280c-4763-b87b-1
 - [x] quantize MIDI sequence update to a single beat instead of track length (4+ beats)
 - [ ] fix quantization bug that happens after MIDI start/stop, reset the sequence(?)
 - [x] global menu
-- [ ] encoder rotation issue that makes it hard to select a value +1 instead of +2 (current behaviour)
+- [ ] encoder rotation issue that makes it hard to increment a value by +1 instead of +2 (current behaviour, maybe debounce related)
 - [x] fix GPIO events hang forever when multiple expander chips have simultaneous interrupts
 - [ ] fix GPIO events hang for a few milliseconds when multiple expander chips have simultaneous interrupts
 - [ ] fix MIDI clock delay of a few milliseconds (happens randomly after playing for ~1hr+, MIDI start/stop resets the delay to 0)
