@@ -42,3 +42,4 @@ systemctl enable pi-sequencer-start.service
 
 sudo apt-get update -y
 sudo apt-get install redis nodejs python3-pip -y
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox chromium-browser -y
