@@ -41,7 +41,7 @@ git config --global user.name "Your Name"
 ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '' -C "your@email.com"
 
 # clone repository
-git clone git@github.com:woudsma/pi-sequencer.git pi-sequencer-io
+cd && git clone git@github.com:woudsma/pi-sequencer.git pi-sequencer-io
 
 # setup Node.js v18, pip3, startup service, x11, chromium, etc.
 cd pi-sequencer-io && ./setup.sh
