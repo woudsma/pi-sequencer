@@ -110,3 +110,33 @@ https://github.com/woudsma/pi-sequencer/assets/6162978/8dc7daa2-280c-4763-b87b-1
 ![heron](assets/heron0.jpg)
 ![sketch](assets/sketch.jpg)
 ![pcb](assets/pcb.jpg)
+
+### Features / todo's
+- [x] read GPIO expander values using interrupt handlers
+- [x] keep state up-to-date in Redis at 60fps+
+- [x] consume state in interactive Electron + React GUI
+- [x] GUI hardware input (switches/encoders/LEDs)
+- [x] GUI touch input (touch display)
+- [x] launch on Raspberry Pi boot
+- [x] sync MIDI event timeline with external MIDI clock with `isobar`
+- [x] output MIDI clock and commands to external MIDI device
+- [x] create multiple independent MIDI tracks
+- [x] persistent state storage (VCS compatible JSON)
+- [x] improve logging and add dev server
+- [x] create/remove MIDI tracks in GUI
+- [x] create/remove projects in GUI
+- [x] 'Elektron Digitakt-like' trig conditions (probability 0-100%, repeat every `<1-8>:<1-8>` + `AND`/`NOT`)
+- [ ] MIDI track conditions (todo..)
+- [x] MIDI track mute
+- [x] MIDI track settings menu
+- [x] MIDI CC parameters menu
+- [x] MIDI CC parameter locks
+- [x] MIDI instrument config using `yml` charts
+- [x] update LEDs according to current track/project state
+- [x] quantize MIDI sequence update to a single beat instead of track length (4+ beats)
+- [ ] fix quantization bug that happens after MIDI start/stop, reset the sequence(?)
+- [x] global menu
+- [ ] encoder rotation issue that makes it hard to select a value +1 instead of +2 (current behaviour)
+- [x] fix GPIO events hang forever when multiple expander chips have simultaneous interrupts
+- [ ] fix GPIO events hang for a few milliseconds when multiple expander chips have simultaneous interrupts
+- [ ] fix MIDI clock delay of a few milliseconds (happens randomly after playing for ~1hr+, MIDI start/stop resets the delay to 0)
