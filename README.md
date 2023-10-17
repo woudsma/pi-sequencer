@@ -2,6 +2,8 @@
 
 > _Messy WIP weekend project_ - 2023
 
+![heron](assets/kicad2.jpg)
+
 ### Intro
 
 > - [Architecture](#architecture)
