@@ -11,7 +11,7 @@ Built with:
 - Custom PCB and various switches/encoders/GPIO expanders/LEDs/...
 - Shell, Python and Node.js
 
-The UI is built with Electron and React. The previous version of the UI used `node-raylib` - which has less overhead and is more performant, but developing in a browser window is much faster. The quad-core RPi seems to be able to handle it without too much latency. The Electron app communicates with the Python processes for IO access and shared state is stored in memory using Redis.
+The UI is built with Electron and React. The previous version of the UI used [`node-raylib`](https://github.com/RobLoach/node-raylib) - which has less overhead and is more performant, but developing in a browser window is much faster. The quad-core RPi seems to be able to handle it without too much latency. The Electron app communicates with the Python processes for IO access and shared state is stored in memory using Redis.
 
 ### Architecture
 - External inputs such as buttons/encoders/LEDs are connected to MCP23017 GPIO expanders that connect to the RPi using I2C
@@ -43,12 +43,31 @@ cd pi-sequencer-io && ./setup.sh
 sudo pip3 install -r requirements.txt
 cd electron && npm install
 
-# to run on boot, add entry for launcher script in ~/.zshrc (or ~/.bashrc)
+# to start automatically on boot, add entry for launcher script in ~/.zshrc (or ~/.bashrc)
 echo /home/pi/pi-sequencer-io/launcher.sh >> ~/.zshrc
 sudo reboot now
 ```
 
-### Footage
+### Usage  
+The MIDI in/out ports will probably need to be set/updated to the correct ports for your setup. This can be done by updating/creating a `yml` MIDI chart in `electron/static/midi-charts/`.
+This is my setup:
+
+> - Class compliant MIDI interface (Midiface 4x4) connected to Raspberry Pi with USB.  
+> - Arturia KeyStep Pro MIDI out is connected to a MIDI in port on the interface.  
+>   (The KeyStep only receives a MIDI clock over USB from Ableton on my computer)
+> - A MIDI device (MFB-503 drumcomputer in my setup) is connected to the MIDI out port on the interface.
+> - The output device receives MIDI clock and events from the Raspberry Pi.
+
+### Development
+I can highly recommend the [VS Code - Remote SSH](https://code.visualstudio.com/docs/remote/ssh) extension to develop quickly on the Raspberry Pi itself from your main computer. You'll need to setup a SSH key (see [Installation](https://github.com/woudsma/pi-sequencer/edit/master/README.md#installation)) if you want to push changes from the Raspberry Pi to a remote repo. You'd also need to configure a deploy key (your Raspberry Pi SSH public key) in your repository settings to be able to push to a remote repo.
+
+Open a terminal window and SSH into the Raspberry Pi. The `pi-sequencer` app will automatically use the first available open terminal window to print its logs (app restart might be necessary if the app has started before you've opened a SSH session). Saving a file will cause the application to restart (mimicking hot reloading). Open a second window if you want to SSH into your Pi to execute scripts for example.
+
+A development server is started after launch, it's accessible on `http:<raspberry-pi-ip-address>:3000` from other devices in your network. This is helpful for styling and UI debugging. The app state can be inspected with your browser Inspector or DevTools, by logging `window.storage`. This variable comes from the `storage` value that's stored in Redis.
+
+All app state is stored in Redis. You can use `redis-cli` to inspect any state variables as well. You can safely run [`FLUSHALL`](https://redis.io/commands/flushall/) to reset everything (destroy all tracks and state). Just restart the app to re-initialize the state.
+
+### Media
 
 https://github.com/woudsma/pi-sequencer/assets/6162978/8dc7daa2-280c-4763-b87b-1b6a334eacd9
 
