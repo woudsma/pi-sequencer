@@ -11,7 +11,6 @@
     "build": "npm-run-all --sequential build-** copy-static",
     "build-backend": "esbuild --bundle --platform=node --target=node18 --packages=external --outdir=dist src/backend/index.js",
     "build-frontend": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" --bundle --sourcemap --platform=browser --outdir=dist/frontend src/frontend/index.jsx",
-    "build2-frontend": "node esbuild.frontend.mjs",
     "build:watch-backend": "npm run build-backend -- --watch",
     "build:watch-frontend": "npm run build-frontend -- --watch",
     "copy-static": "sudo cp -RT static dist/"
@@ -35,10 +34,6 @@
     "yaml": "^2.3.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.22.5",
-    "@babel/preset-react": "^7.22.5",
-    "babel-plugin-styled-components": "^2.1.4",
-    "esbuild-plugin-babel": "^0.2.3",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",

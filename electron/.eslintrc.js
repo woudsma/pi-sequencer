@@ -3,7 +3,6 @@ module.exports = {
     "browser": true,
     "es2021": true
   },
-  // "extends": "plugin:react/recommended",
   "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended", "prettier"],
   "overrides": [
     {
