@@ -1,8 +1,8 @@
 # pi-sequencer
 
-### Repository for the "Heron" multitrack hardware MIDI sequencer (WIP) - 2023  
+#### Repository for the "Heron" multitrack hardware MIDI sequencer - 2023  
 
-> _Messy weekend project!_
+> _Messy WIP weekend project!_
 
 Built with:
 - Raspberry Pi 4B
@@ -21,18 +21,32 @@ The UI is built with Electron and React. The previous version of the UI used `no
 - Both the Python and Node.js processes can read/update the application state in Redis
 - MIDI commands are sent, received and processed with the `isobar` Python library
 
-#### Installation
+### Installation
 Tested on Raspberry Pi OS Lite (64-bit)  
 ```sh
 # requirements
-sudo apt-get install redis -y
+sudo apt-get update -y
+sudo apt-get install git zsh -y
+chsh -s $(which zsh)
+
+# optionally configure git and SSH
+git config --global user.email "your@email.com"
+git config --global user.name "Your Name"
+ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '' -C "your@email.com"
 
 # clone repository
 git clone git@github.com:woudsma/pi-sequencer.git pi-sequencer-io
 
+# setup Node.js v18 and startup service
+cd pi-sequencer-io && ./setup.sh
+
 # installation
-cd pi-sequencer-io && sudo pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 cd electron && npm install
+
+# to run on boot, add entry for launcher script in ~/.zshrc (or ~/.bashrc)
+echo /home/pi/pi-sequencer-io/launcher.sh >> ~/.zshrc
+sudo reboot now
 ```
 
 ### Footage
