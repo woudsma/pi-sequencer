@@ -25,8 +25,7 @@ The UI is built with Electron and React. The previous version of the UI used `no
 Tested on Raspberry Pi OS Lite (64-bit)  
 ```sh
 # requirements
-sudo apt-get update -y
-sudo apt-get install git zsh -y
+sudo apt-get update -y && sudo apt-get install git zsh -y
 chsh -s $(which zsh)
 
 # optionally configure git and SSH
@@ -37,7 +36,7 @@ ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '' -C "your@email.com"
 # clone repository
 git clone git@github.com:woudsma/pi-sequencer.git pi-sequencer-io
 
-# setup Node.js v18 and startup service
+# setup Node.js v18, pip3 and startup service
 cd pi-sequencer-io && ./setup.sh
 
 # installation
