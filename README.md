@@ -53,6 +53,7 @@ sudo reboot now
 https://github.com/woudsma/pi-sequencer/assets/6162978/8dc7daa2-280c-4763-b87b-1b6a334eacd9
 
 ![heron](assets/heron1.jpg)
+![heron](assets/heron2.jpg)
+![heron](assets/heron0.jpg)
 ![sketch](assets/sketch.jpg)
 ![pcb](assets/pcb.jpg)
-![heron](assets/heron0.jpg)
