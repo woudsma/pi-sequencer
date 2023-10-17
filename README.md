@@ -1,9 +1,6 @@
-# pi-sequencer
+# Multitrack Raspberry Pi hardware MIDI sequencer
 
-#### Repository for the "Heron" multitrack Raspberry Pi hardware MIDI sequencer - 2023  
-
-> _Messy WIP weekend project!_
----
+> _Messy WIP weekend project_ - 2023
 
 ### Intro
 
