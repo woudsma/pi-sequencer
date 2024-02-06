@@ -30,7 +30,7 @@ The UI is built with Electron and React. The previous version of the UI used [`n
 - The application state lives in memory using Redis, disk persistence is enabled to reload state after RPi reboot
 - The GUI is rendered with Electron and React
 - Both the Python and Node.js processes can read/update the application state in Redis
-- MIDI commands are sent, received and processed with the `isobar` Python library
+- MIDI commands are sent, received and processed with the [`isobar`](https://github.com/ideoforms/isobar) Python library
 
 ### Installation
 
